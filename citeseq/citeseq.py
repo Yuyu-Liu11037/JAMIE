@@ -14,9 +14,9 @@ GEX = 2000
 adata_GEX = ad.read_h5ad('/workspace/JAMIE/data/citeseq_missing_gex.h5ad')
 adata_ADT = ad.read_h5ad('/workspace/JAMIE/data/citeseq_missing_adt.h5ad')
 
-adata_GEX_train = adata_GEX[SITE1_CELL: SITE1_CELL + SITE2_CELL].copy()
+adata_GEX_train = adata_GEX[: SITE1_CELL].copy()
 adata_GEX_impute = adata_GEX[SITE1_CELL + SITE2_CELL: SITE1_CELL + SITE2_CELL + SITE3_CELL].copy()
-adata_ADT_train = adata_ADT[SITE1_CELL: SITE1_CELL + SITE2_CELL].copy()
+adata_ADT_train = adata_ADT[: SITE1_CELL].copy()
 adata_ADT_impute = adata_ADT[SITE1_CELL + SITE2_CELL: SITE1_CELL + SITE2_CELL + SITE3_CELL].copy()
 
 data1 = adata_GEX_train.X.toarray()
@@ -26,10 +26,12 @@ data4 = adata_ADT_impute.X.toarray()
 corr = np.eye(data1.shape[0], data2.shape[0])
 
 jm = JAMIE(min_epochs=500)
-integrated_data = jm.fit_transform(dataset=[data1, data2], P=corr)
-jm.save_model('/workspace/JAMIE/ckpts/model.h5')
+# integrated_data = jm.fit_transform(dataset=[data1, data2], P=corr)
+# jm.save_model('/workspace/JAMIE/ckpts/model.h5')
+jm.load_model('/workspace/JAMIE/ckpts/model.h5')
 
 imputed = jm.modal_predict(data4, 1)
-imputed_csr = csr_matrix(data1_imputed)
+print(imputed.shape)
+imputed_csr = csr_matrix(imputed)
 
-save_npz('/workspace/JAMIE/data/GEX_imputed_site4.npz', data1_imputed_csr)
+save_npz('/workspace/JAMIE/data/GEX_imputed_site3.npz', imputed_csr)

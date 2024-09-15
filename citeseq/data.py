@@ -28,6 +28,9 @@ sc.pp.highly_variable_genes(
     n_top_genes=2000,
     subset=True
 )
+adata = ad.concat([adata_GEX, adata_ADT], axis=1, merge="first")
+adata.write_h5ad("/workspace/JAMIE/data/citeseq_preprocessed.h5ad")
+sys.exit()
 
 X_GEX = adata_GEX.X.toarray()
 X_GEX[SITE1_CELL + SITE2_CELL: SITE1_CELL + SITE2_CELL + SITE3_CELL] = 0
