@@ -160,13 +160,13 @@ class JAMIE(uc.UnionCom):
             self.col.append(np.shape(self.dataset[i])[1])
 
         # Compute the distance matrix
-        self.compute_distances(save_dist=(
-            self.project_mode in ['tsne'] or (
-                self.match_result is None
-                and self.use_f_tilde
-            )
-        ))
-        time.log('Distance')
+        # self.compute_distances(save_dist=(
+        #     self.project_mode in ['tsne'] or (
+        #         self.match_result is None
+        #         and self.use_f_tilde
+        #     )
+        # ))
+        # time.log('Distance')
 
         # Find correspondence between samples
         if not self.use_f_tilde:
