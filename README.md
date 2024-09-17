@@ -12,6 +12,15 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+### Data
+```
+mkdir data
+cd data
+pip install gdown
+gdown https://drive.google.com/uc?id=1raqlykXvm5wHjam1Up0SHYT-7gq7coz4
+gdown https://drive.google.com/uc?id=1pilLsl2N1HX_US_Y6X6eAwmXaPso_1Mu
+```
+
 ### Citeseq
 ```
 python citeseq/data.py
