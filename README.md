@@ -1,4 +1,4 @@
-# Enviroment
+### Enviroment
 ```
 # JAMIE
 git clone https://github.com/Yuyu-Liu11037/JAMIE.git
@@ -12,12 +12,12 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-# Citeseq
+### Citeseq
 ```
 python citeseq/data.py
 python citeseq/citeseq.py
 python citeseq/eval.py
 ```
 
-# Remark
+### Remark
 Fast training and imputing, no need to save data.
